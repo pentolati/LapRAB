@@ -1,0 +1,17 @@
+flowchart TD
+  S([TATA: gue ada project]):::start --> K[Nami + Lelouch:<br/>buka project + kickoff]
+  K --> D[Lelouch + Senku:<br/>Discovery / Requirement]
+  D --> DS[Sogeking+Bulma+Shikamaru+Saitama:<br/>Design awal]
+  DS --> L{LOOP bangun bertahap}
+  L --> R[Tata req fitur/revisi<br/>di tengah jalan]
+  R --> RF[masuk ALUR REQUEST<br/>fitur LIVE]
+  RF --> ST[Nami: update status + backlog]
+  ST --> Q{App lengkap /<br/>Tata puas?}
+  Q -->|Belum| R
+  Q -->|Ya| QA[L: QA full regression]
+  QA --> G[Kakashi: Pre-Tata Gate final]
+  G --> GO[Levi: deploy / go-live]
+  GO --> M[Nami: MoM penutup + retro]
+  M --> E([APP JADI - LIVE & terdokumentasi]):::done
+  classDef start fill:#a87fb8,color:#fff,stroke:#6b4779
+  classDef done fill:#6b8454,color:#fff,stroke:#3f5230

@@ -1,0 +1,33 @@
+flowchart TD
+  S([Request Tata masuk]):::start --> T{Jenis request?}
+  T -->|Typo/bug| BUG[Kakashi: assign owner -> fix]
+  T -->|Tanya/status| ASK[Nami: jawab status]
+  T -->|Fitur/produk| PM[Lelouch PM: intake + probing]
+  PM --> C1{Masalah jelas?}
+  C1 -->|Tidak| PM
+  C1 -->|Ya| FR[Lelouch: frame problem + metrik]
+  FR --> C2{Butuh riset?}
+  C2 -->|Ya| RD[Senku R&D: riset/POC]
+  RD --> SC[Lelouch: scope + prioritas]
+  C2 -->|Tidak| SC
+  SC --> KO[Kickoff Triad:<br/>Lelouch+Bulma+Kakashi]
+  KO --> C3{Arsitektur besar?}
+  C3 -->|Ya| AR[Sogeking: target arch + ADR]
+  AR --> DS[Bulma: desain UX+UI + responsive]
+  C3 -->|Tidak| DS
+  DS --> FE[Killua: feasibility check]
+  FE --> C4{Feasible + sign-off?}
+  C4 -->|Tidak| DS
+  C4 -->|Ya| BUILD[Build paralel:<br/>Killua FE + Saitama BE + Shikamaru DBA]
+  BUILD --> QA[L: QA + edge case]
+  QA --> C5{Lolos QA?}
+  C5 -->|Tidak| BUILD
+  C5 -->|Ya| GATE[Kakashi: Pre-Tata Gate]
+  GATE --> C6{Gate PASS?}
+  C6 -->|Tidak| DS
+  C6 -->|Ya| TATA{Tata sign-off?}
+  TATA -->|Revisi| PM
+  TATA -->|Approve| DEP[Levi: deploy]
+  DEP --> OUT([Fitur LIVE]):::done
+  classDef start fill:#a87fb8,color:#fff,stroke:#6b4779
+  classDef done fill:#6b8454,color:#fff,stroke:#3f5230

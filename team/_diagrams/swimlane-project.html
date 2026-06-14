@@ -1,0 +1,161 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Inter","Helvetica Neue",system-ui,sans-serif; background: #fbf3f7; color: #2d2a35; padding: 28px 30px 34px; width: 1840px; }
+  h1 { color: #6b4779; font-size: 26px; border-bottom: 4px double #a87fb8; padding-bottom: 8px; margin-bottom: 4px; }
+  .sub { color: #6b8454; font-size: 13px; font-style: italic; margin-bottom: 18px; }
+  .legend { display:flex; gap:16px; flex-wrap:wrap; margin: 8px 0 18px; font-size:11px; }
+  .legend span { display:inline-flex; align-items:center; gap:5px; }
+  .legend i { width:13px; height:13px; border-radius:3px; display:inline-block; }
+  .chip-pic { background:#efe3f3; color:#6b4779; }
+  .chip-mit { background:#fbe1e6; color:#b23a55; }
+  .chip-sub { background:#eef3e6; color:#4f6b34; }
+
+  .grid { display:grid; grid-template-columns: 132px repeat(5, 1fr); gap:7px; align-items:stretch; }
+
+  .phase { background:#6b4779; color:#fff; font-weight:700; font-size:14px; text-align:center; padding:11px 6px; border-radius:8px; letter-spacing:.3px; }
+  .phase small { display:block; font-weight:500; opacity:.85; font-size:10.5px; margin-top:2px; }
+  .corner { background:transparent; }
+
+  .lane-lbl { writing-mode: vertical-rl; transform: rotate(180deg); text-align:center; font-weight:700; font-size:12.5px; color:#fff; border-radius:8px; padding:8px 4px; display:flex; align-items:center; justify-content:center; line-height:1.3; }
+  .cell { display:flex; flex-direction:column; gap:6px; }
+
+  .act { background:#fff; border:1px solid #e8dde5; border-left:5px solid #a87fb8; border-radius:8px; padding:8px 9px; box-shadow:0 1px 3px rgba(107,71,121,.07); }
+  .act-title { font-weight:700; font-size:12.5px; color:#2d2a35; margin-bottom:4px; line-height:1.25; }
+  .pic { display:inline-block; background:#efe3f3; color:#6b4779; font-weight:700; font-size:10px; padding:1.5px 7px; border-radius:10px; margin-bottom:5px; }
+  .io { font-size:10.5px; line-height:1.45; color:#5a5563; }
+  .io b { color:#6b8454; }
+  .sub-box { background:#eef3e6; border-radius:5px; font-size:9.5px; color:#4f6b34; padding:3px 6px; margin-top:5px; line-height:1.35; }
+  .sub-box b { color:#3c5226; }
+  .mit { background:#fbe1e6; border-radius:5px; font-size:9.5px; color:#b23a55; padding:3px 6px; margin-top:5px; line-height:1.35; }
+  .mit b { color:#8f2740; }
+
+  /* lane color accents */
+  .L-prod .act { border-left-color:#a87fb8; } .L-prod .lane-lbl { background:#a87fb8; }
+  .L-des  .act { border-left-color:#d98aa8; } .L-des .lane-lbl  { background:#d98aa8; }
+  .L-arch .act { border-left-color:#8a6f8e; } .L-arch .lane-lbl { background:#8a6f8e; }
+  .L-eng  .act { border-left-color:#9caf88; } .L-eng .lane-lbl  { background:#7c9466; }
+  .L-qa   .act { border-left-color:#cf9a3e; } .L-qa .lane-lbl   { background:#cf9a3e; }
+  .L-ops  .act { border-left-color:#5f93a8; } .L-ops .lane-lbl  { background:#5f93a8; }
+  .L-doc  .act { border-left-color:#b89ccc; } .L-doc .lane-lbl  { background:#b89ccc; }
+
+  .laneRow { display:contents; }
+  .empty { background:#fcf8fb; border:1px dashed #ecdfe8; border-radius:8px; }
+
+  .longbar { grid-column: 2 / 7; background:linear-gradient(90deg,#efe3f3,#f4e8f0); border:1.5px dashed #b89ccc; border-radius:9px; padding:9px 14px; display:flex; align-items:center; gap:12px; }
+  .longbar .pic { margin:0; background:#b89ccc; color:#fff; }
+  .longbar .txt { font-size:11px; color:#5a4a63; line-height:1.4; }
+  .longbar .txt b { color:#6b4779; }
+  .arrow { font-size:18px; color:#b89ccc; }
+</style></head><body>
+  <h1>🗺️ Peta Proses Lintas-Fungsi (Swimlane) — Tata-Eleven</h1>
+  <div class="sub">Dari "gue ada project" sampai app jadi. Kolom = FASE · Baris = LANE (kategori) · tiap kotak = aktivitas (PIC · Input · Output · ⚠ mitigasi). Kotak panjang = aktivitas sepanjang siklus.</div>
+  <div class="legend">
+    <span><i class="chip-pic"></i> PIC (penanggung jawab)</span>
+    <span><i class="chip-sub"></i> ↳ sub-aktivitas</span>
+    <span><i class="chip-mit"></i> ⚠ kondisi negatif → mitigasi</span>
+    <span><i style="background:#efe3f3;border:1.5px dashed #b89ccc;"></i> kotak panjang = nembus fase (sepanjang siklus)</span>
+  </div>
+
+  <div class="grid">
+    <!-- header -->
+    <div class="corner"></div>
+    <div class="phase">1 · DISCOVERY & INTAKE<small>kenapa & layak gak</small></div>
+    <div class="phase">2 · REQUIREMENT & DESAIN<small>apa persisnya & gimana rupanya</small></div>
+    <div class="phase">3 · BUILD<small>dibangun</small></div>
+    <div class="phase">4 · TEST & GATE<small>diuji & disetujui</small></div>
+    <div class="phase">5 · DEPLOY & TUTUP<small>dirilis & ditutup</small></div>
+
+    <!-- LANE: Produk & Requirement -->
+    <div class="laneRow L-prod">
+      <div class="lane-lbl">PRODUK &amp; REQUIREMENT</div>
+      <div class="cell">
+        <div class="act"><div class="act-title">Intake &amp; Kickoff fitur</div><div class="pic">Lelouch (PM)</div><div class="io"><b>In:</b> visi/masalah dari Tata</div><div class="io"><b>Out:</b> problem statement</div><div class="sub-box">↳ Kickoff resmi (SOP-LL-07) — fitur WAJIB start dari PM</div><div class="mit">⚠ Scope raksasa → <b>cap per-fase</b> (Nami), jgn boil-the-ocean</div></div>
+        <div class="act"><div class="act-title">Riset &amp; Validasi</div><div class="pic">Senku (R&amp;D)</div><div class="io"><b>In:</b> pertanyaan riset dari Lelouch</div><div class="io"><b>Out:</b> evidence, POC, cek compliance (research note)</div><div class="sub-box">↳ kompetitor 10+ sumber · POC · cek UU PDP</div><div class="mit">⚠ Gak feasible / ilegal → <b>STOP + lapor Lelouch</b></div></div>
+      </div>
+      <div class="cell">
+        <div class="act"><div class="act-title">Frame Requirement + Prioritas</div><div class="pic">Lelouch (PM/BA)</div><div class="io"><b>In:</b> evidence Senku</div><div class="io"><b>Out:</b> PRD, user story, prioritas</div><div class="sub-box">↳ PRD high-level (anti hilang konteks) + metrik sukses</div><div class="mit">⚠ Requirement berubah → <b>re-grooming</b>, update PRD</div></div>
+      </div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="cell">
+        <div class="act"><div class="act-title">Sign-off final</div><div class="pic">Tata (CEO)</div><div class="io"><b>In:</b> app lolos gate + deploy</div><div class="io"><b>Out:</b> ✅ terima / revisi</div><div class="mit">⚠ Ditolak → balik ke fase terkait + alasan jelas</div></div>
+      </div>
+    </div>
+
+    <!-- LANE: Desain -->
+    <div class="laneRow L-des">
+      <div class="lane-lbl">DESAIN (UI/UX)</div>
+      <div class="empty"></div>
+      <div class="cell">
+        <div class="act"><div class="act-title">Mockup + Design System</div><div class="pic">Bulma (UI/UX)</div><div class="io"><b>In:</b> PRD + user story</div><div class="io"><b>Out:</b> mockup, palette, spec responsive</div><div class="sub-box">↳ heuristic eval · token · 2-DNA (UX+UI craft)</div><div class="mit">⚠ Desain gak feasible → <b>feasibility check</b> Killua/Kakashi dulu, jgn re-do</div></div>
+      </div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+    </div>
+
+    <!-- LANE: Arsitektur -->
+    <div class="laneRow L-arch">
+      <div class="lane-lbl">ARSITEKTUR</div>
+      <div class="empty"></div>
+      <div class="cell">
+        <div class="act"><div class="act-title">Target Arch + NFR + Tech Select</div><div class="pic">Sogeking (Architect)</div><div class="io"><b>In:</b> requirement + NFR</div><div class="io"><b>Out:</b> ADR, target arch, risk map</div><div class="sub-box">↳ advisory <b>proaktif</b> — angkat risiko tanpa diminta</div><div class="mit">⚠ Risiko skala/biaya/security → <b>ADR + advisory note</b> ke tim</div></div>
+      </div>
+      <div class="cell">
+        <div class="act"><div class="act-title">Lock Pattern</div><div class="pic">Kakashi (Lead)</div><div class="io"><b>In:</b> target arch</div><div class="io"><b>Out:</b> pola dikunci, standar kode</div><div class="mit">⚠ Keputusan tak-terpulihkan → <b>ADR wajib</b></div></div>
+      </div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+    </div>
+
+    <!-- LANE: Engineering -->
+    <div class="laneRow L-eng">
+      <div class="lane-lbl">ENGINEERING</div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="cell">
+        <div class="act"><div class="act-title">FE Implementation</div><div class="pic">Killua (FE)</div><div class="io"><b>In:</b> mockup + API contract</div><div class="io"><b>Out:</b> UI jalan (cepat, a11y)</div><div class="sub-box">↳ eng-note · reuse komponen · responsive QC</div></div>
+        <div class="act"><div class="act-title">BE Implementation + Auth</div><div class="pic">Saitama (BE)</div><div class="io"><b>In:</b> functional spec + schema</div><div class="io"><b>Out:</b> API, logika, audit-trail</div><div class="sub-box">↳ handoff API contract ⇄ Killua</div><div class="mit">⚠ Data SACRED — <b>jgn timpa, selalu merge</b> + log</div></div>
+        <div class="act"><div class="act-title">Schema + Index + Retensi</div><div class="pic">Shikamaru (DBA)</div><div class="io"><b>In:</b> kebutuhan data</div><div class="io"><b>Out:</b> skema, query cepat, PDP</div><div class="mit">⚠ Migrasi → <b>skrip rollback teruji</b> dulu</div></div>
+      </div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+    </div>
+
+    <!-- LANE: QA -->
+    <div class="laneRow L-qa">
+      <div class="lane-lbl">QA</div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="cell">
+        <div class="act"><div class="act-title">Uji (exploratory + regresi)</div><div class="pic">L (QA)</div><div class="io"><b>In:</b> build dari FE/BE</div><div class="io"><b>Out:</b> bug report, <b>verdict</b> (test note)</div><div class="sub-box">↳ test pyramid · crossbrowser · a11y</div><div class="mit">⚠ Bug kritis S1/S2 → <b>balik ke owner</b>, rilis ditahan</div></div>
+      </div>
+      <div class="empty"></div>
+    </div>
+
+    <!-- LANE: Gate + DevOps -->
+    <div class="laneRow L-ops">
+      <div class="lane-lbl">GATE &amp; DEVOPS</div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="cell">
+        <div class="act"><div class="act-title">Pre-Tata Gate</div><div class="pic">Kakashi (Lead)</div><div class="io"><b>In:</b> build lolos QA</div><div class="io"><b>Out:</b> pass → ke Tata</div><div class="mit">⚠ Fail → <b>balik ke owner</b> + feedback konkret</div></div>
+      </div>
+      <div class="cell">
+        <div class="act"><div class="act-title">Deploy + Monitor</div><div class="pic">Levi (DevOps)</div><div class="io"><b>In:</b> build lolos gate</div><div class="io"><b>Out:</b> live, monitoring nyala</div><div class="mit">⚠ Deploy gagal → <b>rollback &lt; 5 menit</b></div></div>
+      </div>
+    </div>
+
+    <!-- LANE: Dokumentasi & Delivery (long bars) -->
+    <div class="laneRow L-doc">
+      <div class="lane-lbl">DOKUMENTASI &amp; DELIVERY</div>
+      <div class="longbar">
+        <span class="pic">Nami (Delivery)</span>
+        <span class="arrow">⟶</span>
+        <span class="txt"><b>SEPANJANG SIKLUS:</b> Catat <b>MoM tiap rapat (file baru, gak nimpa)</b> · update <b>STATUS</b> + <b>ACTIVITY</b> · kelola <b>RAID / Risk register</b> · eskalasi blocker &gt;24 jam · tutup dengan <b>Lessons Learned</b>. &nbsp; Semua keputusan jatuh ke file → <b>konteks gak ilang</b>.</span>
+      </div>
+    </div>
+  </div>
+</body></html>
