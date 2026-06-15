@@ -4,6 +4,8 @@
 
 ---
 
+2026-06-15 07:15 | Levi | git init + push ke github.com/pentolati/LapRAB (branch main). Merge unrelated history (README remote). node_modules/dist/screenshot di-gitignore.
+2026-06-15 07:10 | Killua | Fix border kepotong: card tabel (Klien/Sales/Master/Dashboard) dikasih overflow:hidden biar divider ngeklip rapi ke sudut rounded.
 2026-06-15 07:00 | Bulma+Killua | Responsive HP: desktop pakai sidebar, mobile pakai TOP-BAR + BOTTOM-NAV (Home/Sales/Master/Klien) + konten full-width. Tabel lebar (Sales/Builder/Detail/Master) scroll horizontal. Verified di viewport 390px.
 2026-06-15 06:45 | Killua | Item GLOBAL (jenisSlug '*') — komponen sama lintas jenis (galian/mobilisasi/urugan/drainase/dll) cukup didefinisiin 1×, auto muncul di semua jenis. Master Harga ada filter 🌐 Global. + Satuan jadi DROPDOWN (entity Satuan, bisa Tambah Satuan di master) menggantikan input teks. + 2 PDF: Klien (markup) & Internal (modal+breakdown), nama file unik. Fix hooks order ProposalDetail.
 2026-06-15 06:25 | Killua | Fitur Zona/Wilayah harga (hybrid): tiap zona bisa mode "% indeks" ATAU "price-list sendiri". Builder ada dropdown Zona → harga auto-recompute. Master Data → tab Zona (kelola % + editor price-list per item). Verified: Indonesia Timur 130% → semua harga ×1.3. Entity Zona+ZonaHarga (Shikamaru).

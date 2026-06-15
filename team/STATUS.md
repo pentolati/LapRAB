@@ -5,20 +5,20 @@
 | Persona | Status | Lagi ngerjain | Sejak | Updated | Log |
 |---|---|---|---|---|---|
 | Lelouch | 🟢 idle | — | — | — | [log](lelouch/log.md) |
-| Nami | 🟡 working | Lapor recovery ke Tata + nunggu konfirmasi arah desain | 04:55 | 05:12 | [log](nami/log.md) |
+| Nami | 🟢 idle | Sesi ditutup — MoM + Checkpoint Log disimpan (+PDF) | 04:55 | 07:20 | [log](nami/log.md) |
 | Sogeking | 🟢 idle | — | — | — | [log](sogeking/log.md) |
-| Kakashi | 🟢 idle | Pre-Tata Gate passed (bug fix + redesign) | 04:58 | 05:12 | [log](kakashi/log.md) |
-| Bulma | 🟢 idle | ✅ Palet SEDUH (no ungu/gradasi) terpasang | 04:58 | 05:12 | [log](bulma/log.md) |
-| Killua | 🟢 idle | ✅ Route Dashboard + verifikasi render | 04:56 | 05:12 | [log](killua/log.md) |
+| Kakashi | 🟢 idle | Pre-Tata Gate passed | 04:58 | 07:20 | [log](kakashi/log.md) |
+| Bulma | 🟢 idle | ✅ UI final palet sage airy + responsive HP | 04:58 | 07:20 | [log](bulma/log.md) |
+| Killua | 🟢 idle | ✅ Fitur lengkap FE (lihat Checkpoint Log MoM) | 04:56 | 07:20 | [log](killua/log.md) |
 | Saitama | 🟢 idle | — | — | — | [log](saitama/log.md) |
-| Shikamaru | 🟢 idle | ✅ Bug Master Data FIXED (entity=service-key) | 04:55 | 05:12 | [log](shikamaru/log.md) |
+| Shikamaru | 🟢 idle | ✅ Data model: item global, zona, satuan, history | 04:55 | 07:20 | [log](shikamaru/log.md) |
 | Senku | 🟢 idle | — | — | — | [log](senku/log.md) |
-| L | 🟡 working | Smoke test alur penuh (New Proposal → PDF) | 04:58 | 05:12 | [log](l/log.md) |
-| Levi | 🟢 idle | — | — | — | [log](levi/log.md) |
+| L | 🟢 idle | ✅ Smoke test (login→proposal→PDF) lewat browser | 04:58 | 07:20 | [log](l/log.md) |
+| Levi | 🟢 idle | ✅ Push ke github.com/pentolati/LapRAB | 04:55 | 07:20 | [log](levi/log.md) |
 
 **Legend:** 🟢 idle • 🟡 working • 🔴 blocked • ⚫ off — **Sejak** = jam mulai claim, **Updated** = perubahan status terakhir.
 
 ## Current sprint / goal
-**Project: LapRAB** — generator RAB & penawaran lapangan olahraga (alat jualan ke calon klien). MVP clickable prototype (Fauxbase, no BE dulu).
-- 🔴 Bug aktif: Master Data (Harga/Item & Jenis Lapangan) kosong → **root cause: mismatch nama entity vs service-key**. Shikamaru fix.
-- 🟡 Redesign: Tata gak suka UI/UX → Bulma overhaul match SEDUH/Sajak (nunggu Tata pilih arah).
+**Project: LapRAB** — generator RAB & penawaran lapangan olahraga (alat jualan ke calon klien). MVP clickable prototype (Fauxbase, no BE).
+- ✅ **MVP DONE & live di GitHub** (github.com/pentolati/LapRAB). Lihat Checkpoint Log di `mom/2026-06-15-recovery-laprab.md`.
+- Backlog opsional: riset harga riil, template jenis lapangan tambahan, struktur indoor, PDF kop/logo, backend (kalau perlu).
